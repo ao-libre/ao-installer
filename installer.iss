@@ -38,6 +38,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "C:\ao-autoupdate\Autoupdate.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\ao-autoupdate\ConfigAutoupdate.ini"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "C:\ao-installer\Dlls\system32\AAMD532.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
 Source: "C:\ao-installer\Dlls\system32\AOFX.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
@@ -55,7 +56,7 @@ Source: "C:\ao-installer\Dlls\system32\WINMM.dll"; DestDir: "{sys}"; Flags: regs
 Source: "C:\ao-installer\Dlls\system32\WS2_32.dll"; DestDir: "{sys}"; Flags: regserver 32bit
 Source: "C:\ao-installer\Dlls\system32\ZLIB.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
 
-Source: "C:\ao-installer\Dlls\SysWOW64\COMCTL32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
+Source: "C:\ao-installer\Dlls\SysWOW64\COMCTL32.ocx"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
 Source: "C:\ao-installer\Dlls\SysWOW64\COMDLG32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
 Source: "C:\ao-installer\Dlls\SysWOW64\CSWSK32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
 Source: "C:\ao-installer\Dlls\SysWOW64\DX7VB.dll"; DestDir: "{app}"; Flags: ignoreversion
