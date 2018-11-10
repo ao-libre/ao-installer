@@ -37,36 +37,29 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\ao-cliente\Autoupdate.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\ao-cliente\Argentum.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\ao-cliente\Graficos\*"; DestDir: "{app}\Graficos"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\ao-cliente\INIT\*"; DestDir: "{app}\INIT"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\ao-cliente\Mapas\*"; DestDir: "{app}\MAPAS"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\ao-cliente\MIDI\*"; DestDir: "{app}\MIDI"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\ao-cliente\Screenshots\*"; DestDir: "{app}\Screenshoots"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\ao-cliente\WAV\*"; DestDir: "{app}\Wav"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\ao-autoupdate\Autoupdate.exe"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "C:\ao-installer\Dlls\AAMD532.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\AOFX.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\AOLIB.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\GDI32.dll"; DestDir: "{sys}"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\DX7VB.DLL"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\IJL11.dll"; DestDir: "{app}\Dlls"; Flags: ignoreversion
-Source: "C:\ao-installer\Dlls\LEEINIS.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\LEEMAPAS.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\OLEPRO32.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\VBABDX.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\WINMM.dll"; DestDir: "{sys}"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\WS2_32.dll"; DestDir: "{sys}"; Flags: regserver 32bit
-Source: "C:\ao-installer\Dlls\ZLIB.OCX"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\AAMD532.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\AOFX.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\AOLIB.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+;Unsafe files http://www.jrsoftware.org/ishelp/index.php?topic=unsafefiles
+Source: "C:\ao-installer\Dlls\system32\GDI32.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\IJL11.dll"; DestDir: "{app}\Dlls"; Flags: ignoreversion
+Source: "C:\ao-installer\Dlls\system32\LEEINIS.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\LEEMAPAS.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+;Unsafe files http://www.jrsoftware.org/ishelp/index.php?topic=unsafefiles
+;Source: "C:\ao-installer\Dlls\system32\OLEPRO32.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\Unzip32.dll"; DestDir: "{app}"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\VBABDX.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\WINMM.dll"; DestDir: "{sys}"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\WS2_32.dll"; DestDir: "{sys}"; Flags: regserver 32bit
+Source: "C:\ao-installer\Dlls\system32\ZLIB.dll"; DestDir: "{app}\Dlls"; Flags: regserver 32bit
 
-Source: "C:\ao-installer\Dlls\System32\COMCTL32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
-Source: "C:\ao-installer\Dlls\System32\COMDLG32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
-Source: "C:\ao-installer\Dlls\System32\CSWSK32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
-Source: "C:\ao-installer\Dlls\System32\DX7VB.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\ao-installer\Dlls\System32\DX8VB.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\ao-installer\Dlls\System32\Unzip32.dll"; DestDir: "{app}"; Flags: regserver 32bit
-
+Source: "C:\ao-installer\Dlls\SysWOW64\COMCTL32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
+Source: "C:\ao-installer\Dlls\SysWOW64\COMDLG32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
+Source: "C:\ao-installer\Dlls\SysWOW64\CSWSK32.ocx"; DestDir: "{app}\Dlls"; Flags: ignoreversion
+Source: "C:\ao-installer\Dlls\SysWOW64\DX7VB.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\ao-installer\Dlls\SysWOW64\DX8VB.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\ao-installer\Dlls\SysWOW64\MSADODC.ocx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\ao-installer\Dlls\SysWOW64\MSCOMCTL.ocx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\ao-installer\Dlls\SysWOW64\MSINET.ocx"; DestDir: "{app}"; Flags: ignoreversion
@@ -88,8 +81,8 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase aamd532.dll; WorkingDir: {app}\dlls; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
-Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase ijl11.dll; WorkingDir: {app}\dlls; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
+Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase AAMD532.dll; WorkingDir: {app}\dlls; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
+Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase IJL11.dll; WorkingDir: {app}\dlls; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
 Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase vbdabl.dll; WorkingDir: {app}\dlls; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
 Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase psapi.dll; WorkingDir: {app}\dlls; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
 Filename: "{dotnet20}\RegAsm.exe"; Parameters: /codebase Unzip32.dll; WorkingDir: {app}; StatusMsg: "Registrando componentes..."; Flags: runminimized; Check: FrameworkIsInstalled
