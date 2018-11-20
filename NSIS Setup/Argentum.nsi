@@ -3,7 +3,9 @@
 ; Instalador de Argentum Online
 ; creado por AlejoLp (alejolp@alejolp.com)
 ; y Maraxus (juansotuyo@gmail.com)
-; Modificado por Juan Andres Dalmasso (CHOTS)
+; Modificado por:
+; Juan Andres Dalmasso (CHOTS) 
+; y Lucas Recoaro (Recox)
 ; Para Argentum Online Libre
 ;
 ;--------------------------------
@@ -13,15 +15,14 @@
 ; Informacion basica del programa - Modificar estos strings para cada servidor
 
 !define PRODUCT_NAME     "Argentum Online Libre"
-!define PRODUCT_VERSION  "0.1"
 
 !define GAME_CLIENT_FILE "Autoupdate.exe"
-!define GAME_MANUAL_FILE "Manual del Juego.url"
+!define GAME_MANUAL_FILE "Manual.url"
 !define WEBSITE          "http://www.argentumonline.org"
 
 
 ; Folder in which the game files are stored (relative to script)
-!define GAME_FILES       "AO"
+!define GAME_FILES       "Cliente"
 
 
 ; Folder in which the dlls and ocx for the game are stored (relative to script)
@@ -64,19 +65,19 @@
 
 !define AO_INSTALLDIR_REGKEY "Software\${AO_BASIC_REGKEY}"
 !define AO_UNISTALLER_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${AO_BASIC_REGKEY}"
-!define AO_SM_FOLDER "${PRODUCT_NAME} ${PRODUCT_VERSION}"
+!define AO_SM_FOLDER "${PRODUCT_NAME}"
 !define AO_STARTMENU_FULL_DIR "$SMPROGRAMS\${AO_SM_FOLDER}"
 
-!define GAME_LINK_FILE_NAME "${PRODUCT_NAME} ${PRODUCT_VERSION}.lnk"
+!define GAME_LINK_FILE_NAME "${PRODUCT_NAME}.lnk"
 
 !define INSTALL_DIR_REG_NAME "Install_Dir"
 
 ;--------------------------------
 ;Configuration
 
-Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
+Name "${PRODUCT_NAME}"
 
-OutFile "Instalador ${PRODUCT_NAME} ${PRODUCT_VERSION}.exe"
+OutFile "Instalador ${PRODUCT_NAME}.exe"
 
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 
@@ -113,7 +114,7 @@ InstallDirRegKey HKLM ${AO_INSTALLDIR_REGKEY} "${INSTALL_DIR_REG_NAME}"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "${INSTALL_BANNER}"
 !define MUI_ABORTWARNING
-!define MUI_FINISHPAGE_RUN "$INSTDIR\${GAME_CLIENT_FILE}"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${GAME_FILES}\${GAME_CLIENT_FILE}"
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\${GAME_MANUAL_FILE}"
 !define MUI_FINISHPAGE_LINK "${WEBSITE}"
 !define MUI_FINISHPAGE_LINK_LOCATION "${WEBSITE}"
@@ -159,11 +160,11 @@ InstallDirRegKey HKLM ${AO_INSTALLDIR_REGKEY} "${INSTALL_DIR_REG_NAME}"
 ;--------------------------------
 ; Description of each component in each language
 
-LangString ARGENTUM_DESC ${LANG_ENGLISH} "Basic client for ${PRODUCT_NAME} ${PRODUCT_VERSION}"
-LangString ARGENTUM_DESC ${LANG_SPANISH} "Cliente básico de ${PRODUCT_NAME} ${PRODUCT_VERSION}"
+LangString ARGENTUM_DESC ${LANG_ENGLISH} "Basic client for ${PRODUCT_NAME}"
+LangString ARGENTUM_DESC ${LANG_SPANISH} "Cliente básico de ${PRODUCT_NAME}"
 
-LangString DESKTOP_LINK_DESC ${LANG_ENGLISH} "Adds a link to ${PRODUCT_NAME} ${PRODUCT_VERSION} in the Desktop"
-LangString DESKTOP_LINK_DESC ${LANG_SPANISH} "Agrega un acceso directo a ${PRODUCT_NAME} ${PRODUCT_VERSION} en el Escritorio"
+LangString DESKTOP_LINK_DESC ${LANG_ENGLISH} "Adds a link to ${PRODUCT_NAME} in the Desktop"
+LangString DESKTOP_LINK_DESC ${LANG_SPANISH} "Agrega un acceso directo a ${PRODUCT_NAME} en el Escritorio"
 
 ;--------------------------------
 ; Name of components that need to be translated
@@ -197,7 +198,7 @@ LicenseLangString MUILicense ${LANG_SPANISH} "license-es.txt"
 ; Here starts the magic!
 
 ; The stuff to install
-Section "${PRODUCT_NAME} ${PRODUCT_VERSION}" SEC_ARGENTUM
+Section "${PRODUCT_NAME}" SEC_ARGENTUM
 
   SectionIn RO
   
@@ -208,7 +209,7 @@ Section "${PRODUCT_NAME} ${PRODUCT_VERSION}" SEC_ARGENTUM
   ; *** Los archivos del juego ***
 
   File /r "${GAME_FILES}"
-
+  
   ;--------------------------------------------------------------------
   ; Write the installation path into the registry
   WriteRegStr HKLM ${AO_INSTALLDIR_REGKEY} "${INSTALL_DIR_REG_NAME}" "$INSTDIR"
@@ -230,7 +231,7 @@ SectionEnd
 
 Section "$(DESKTOP_LINK_COMPONENT)" SEC_DESKTOP_LINK
 
-  CreateShortCut "$DESKTOP\${GAME_LINK_FILE_NAME}" "$INSTDIR\${GAME_CLIENT_FILE}" "" "$INSTDIR\${GAME_CLIENT_FILE}" 0
+  CreateShortCut "$DESKTOP\${GAME_LINK_FILE_NAME}" "$INSTDIR\${GAME_FILES}\${GAME_CLIENT_FILE}" "" "$INSTDIR\${GAME_FILES}\${GAME_CLIENT_FILE}" 0
 
 SectionEnd
 
@@ -396,7 +397,7 @@ FunctionEnd
 
 Function CreateStartMenuGroup
 
-  !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+    !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 
     ;Create shortcuts
     CreateDirectory "${AO_STARTMENU_FULL_DIR}"
@@ -421,6 +422,6 @@ FunctionEnd
 ; Section descriptions
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SEC_ARGENTUM} "$(ARGENTUM_DESC)"
-  !insertmacro MUI_DESCRIPTION_TEXT ${SEC_DESKTOP_LINK} "$(DESKTOP_LINK_DESC)"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC_ARGENTUM} "$(ARGENTUM_DESC)"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC_DESKTOP_LINK} "$(DESKTOP_LINK_DESC)"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
