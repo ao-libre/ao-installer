@@ -22,7 +22,7 @@
 
 
 ; Folder in which the game files are stored (relative to script)
-!define GAME_FILES       "Cliente"
+!define GAME_FILES       "Launcher"
 
 
 ; Folder in which the dlls and ocx for the game are stored (relative to script)
@@ -49,7 +49,7 @@
 !define CONFIGURE_APP "AOSetup.exe"     ;Name of the configuration program
 
 
-!define INCLUDE_AUTOUPDATER_APP "1"              ;Set it to 0 if no auto-update program exists
+!define INCLUDE_AUTOUPDATER_APP "0"              ;Set it to 0 if no auto-update program exists
 !define AUTOUPDATER_APP "Autoupdate.exe"   ;Name of the auto-update program
 
 
@@ -115,7 +115,7 @@ InstallDirRegKey HKLM ${AO_INSTALLDIR_REGKEY} "${INSTALL_DIR_REG_NAME}"
 !define MUI_HEADERIMAGE_BITMAP "${INSTALL_BANNER}"
 !define MUI_ABORTWARNING
 !define MUI_FINISHPAGE_RUN "$INSTDIR\${GAME_FILES}\${GAME_CLIENT_FILE}"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\${GAME_MANUAL_FILE}"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\${GAME_FILES}\${GAME_MANUAL_FILE}"
 !define MUI_FINISHPAGE_LINK "${WEBSITE}"
 !define MUI_FINISHPAGE_LINK_LOCATION "${WEBSITE}"
 
@@ -372,8 +372,18 @@ SectionEnd
 
 ;--------------------------------
 ; Installer Functions
+!include LogicLib.nsh
+RequestExecutionLevel admin ;Require admin rights on NT6+ (When UAC is turned on)
 
 Function .onInit
+
+	UserInfo::GetAccountType
+	pop $0
+	${If} $0 != "admin" ;Require admin rights on NT4+
+		MessageBox mb_iconstop "Administrator rights required!"
+		SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
+		Quit
+	${EndIf}
 
   ; Make sure we request for the language
   !insertmacro MUI_LANGDLL_DISPLAY
@@ -403,7 +413,7 @@ Function CreateStartMenuGroup
     CreateDirectory "${AO_STARTMENU_FULL_DIR}"
 
     CreateShortCut "${AO_STARTMENU_FULL_DIR}\$(UNINSTALL_LINK)" "$INSTDIR\${UNINSTALLER_NAME}" "" "$INSTDIR\${UNINSTALLER_NAME}" 0
-    CreateShortCut "${AO_STARTMENU_FULL_DIR}\${GAME_LINK_FILE_NAME}" "$INSTDIR\${GAME_CLIENT_FILE}" "" "$INSTDIR\${GAME_CLIENT_FILE}" 0
+	CreateShortCut "${AO_STARTMENU_FULL_DIR}\${GAME_LINK_FILE_NAME}" "$INSTDIR\${GAME_FILES}\${GAME_CLIENT_FILE}" "" "$INSTDIR\${GAME_FILES}\${GAME_CLIENT_FILE}" 0
 
     StrCmp ${INCLUDE_CONFIGURE_APP} "0" +2
       CreateShortCut "${AO_STARTMENU_FULL_DIR}\$(CONFIGURATION_APP_LINK)" "$INSTDIR\${CONFIGURE_APP}" "" "$INSTDIR\${CONFIGURE_APP}" 0
